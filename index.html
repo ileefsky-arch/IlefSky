@@ -41,7 +41,7 @@
         .section h2 { font-size: 36px; margin-bottom: 30px; color: gold; position: relative; display: inline-block; }
         .section h2:after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: linear-gradient(90deg,transparent,gold,transparent); }
         .services { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
-        .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 25px 20px; border-radius: 15px; width: 260px; min-height: 220px; transition: 0.4s; cursor: pointer; border: 1px solid rgba(255,215,0,0.2); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 25px 20px; border-radius: 15px; width: 260px; min-height: 260px; transition: 0.4s; cursor: pointer; border: 1px solid rgba(255,215,0,0.2); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .card:before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg,transparent,rgba(255,215,0,0.1),transparent); transition: 0.5s; }
         .card:hover:before { left: 100%; }
         .card:hover { transform: translateY(-10px); background: rgba(255,215,0,0.1); border-color: rgba(255,215,0,0.5); box-shadow: 0 10px 30px rgba(255,215,0,0.2); }
@@ -49,6 +49,9 @@
         .card:hover .card-icon { transform: scale(1.1) rotate(5deg); }
         .card h3 { color: gold; margin-bottom: 10px; font-size: 20px; font-weight: 600; }
         .card p { color: #ccc; font-size: 13px; }
+        .card-price { font-size: 18px; color: gold; margin: 15px 0 5px; font-weight: bold; }
+        .btn-sm { padding: 8px 20px; background: gold; color: #0b0f1a; border: none; border-radius: 30px; cursor: pointer; transition: 0.3s; margin-top: 10px; font-weight: 500; }
+        .btn-sm:hover { background: #ffed4a; transform: scale(1.02); }
         [dir="rtl"] .card h3 { font-size: 17px; }
         [dir="rtl"] .card p { font-size: 11.5px; }
         .stats-counter-container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 50px 0; }
@@ -74,9 +77,9 @@
         .partners-section h3 { color: gold; font-size: 28px; margin-bottom: 30px; position: relative; display: inline-block; }
         .partners-section h3:after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: linear-gradient(90deg,transparent,gold,transparent); }
         .partners-grid { display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
-        .partner-logo { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); padding: 10px; display: inline-flex; width: 140px; justify-content: center; border-radius: 12px; transition: 0.3s; border: 1px solid rgba(255,215,0,0.2); }
+        .partner-logo { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); padding: 8px; display: inline-flex; width: 120px; justify-content: center; border-radius: 12px; transition: 0.3s; border: 1px solid rgba(255,215,0,0.2); }
         .partner-logo:hover { transform: translateY(-5px); border-color: gold; background: rgba(255,215,0,0.1); }
-        .partner-logo img { height: 45px; width: auto; max-width: 100px; object-fit: contain; filter: brightness(0.8); transition: 0.3s; }
+        .partner-logo img { height: 40px; width: auto; max-width: 90px; object-fit: contain; filter: brightness(0.8); transition: 0.3s; }
         .partner-logo:hover img { filter: brightness(1); }
         .projects-section { background: linear-gradient(135deg,rgba(0,0,0,0.4),rgba(0,0,0,0.2)); padding: 50px 20px; text-align: center; }
         .projects-section h3 { color: gold; font-size: 28px; margin-bottom: 30px; position: relative; display: inline-block; }
@@ -204,8 +207,9 @@
 </nav>
 
 <div class="lang-switcher">
-    <button class="lang-btn active" onclick="switchLanguage('en', this)">EN</button>
-    <button class="lang-btn" onclick="switchLanguage('ar', this)">عربي</button>
+    <button class="lang-btn" onclick="switchLanguage('en', this)">EN</button>
+    <button class="lang-btn" onclick="switchLanguage('fr', this)">FR</button>
+    <button class="lang-btn active" onclick="switchLanguage('ar', this)">عربي</button>
 </div>
 
 <div id="serviceModal" class="modal">
@@ -255,19 +259,31 @@
         "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } }
     });
     
-    // ========== البيانات المدمجة مع الصور والفيديوهات ==========
+    // ========== Données complètes avec prix en DZD ==========
     const contentData = {
-        siteName: { en: "ILefSky Academy & Technology", ar: "أكاديمية وتقنية ILefSky" },
-        tagline: { en: "Fly Your Ideas into Reality", ar: "حلق بأفكارك إلى الواقع" },
+        siteName: { 
+            en: "ILefSky Academy & Technology", 
+            fr: "ILefSky Academy & Technology",
+            ar: "أكاديمية وتقنية ILefSky" 
+        },
+        tagline: { 
+            en: "Fly Your Ideas into Reality", 
+            fr: "Envolez vos idées vers la réalité",
+            ar: "حلق بأفكارك إلى الواقع" 
+        },
         services: [
             {
                 id: "web", icon: "fa-code",
-                title: { en: "Web Development", ar: "تطوير الويب" },
-                shortDesc: { en: "Modern, responsive websites.", ar: "مواقع حديثة ومتجاوبة" },
-                fullDesc: { en: "Professional web development services including custom designs, e-commerce solutions, and CMS integration.", ar: "خدمات تطوير ويب احترافية تشمل تصاميم مخصصة، حلول التجارة الإلكترونية، وأنظمة إدارة المحتوى." },
-                features: { en: ["✓ Modern responsive design", "✓ Fast loading speed", "✓ Advanced security", "✓ SEO optimized", "✓ 24/7 support"], ar: ["✓ تصميم عصري متجاوب", "✓ سرعة تحميل فائقة", "✓ حماية متقدمة", "✓ تحسين محركات البحث", "✓ دعم فني 24/7"] },
-                price: { en: "From $500", ar: "من $500" },
-                priceNote: { en: "Based on project scope", ar: "حسب حجم المشروع" },
+                title: { en: "Web Development", fr: "Développement Web", ar: "تطوير الويب" },
+                shortDesc: { en: "Modern, responsive websites.", fr: "Sites web modernes et responsives.", ar: "مواقع حديثة ومتجاوبة" },
+                fullDesc: { en: "Professional web development services including custom designs, e-commerce solutions, and CMS integration.", fr: "Services professionnels de développement web : designs personnalisés, solutions e-commerce et intégration CMS.", ar: "خدمات تطوير ويب احترافية تشمل تصاميم مخصصة، حلول التجارة الإلكترونية، وأنظمة إدارة المحتوى." },
+                features: { 
+                    en: ["✓ Modern responsive design", "✓ Fast loading speed", "✓ Advanced security", "✓ SEO optimized", "✓ 24/7 support"], 
+                    fr: ["✓ Design responsive moderne", "✓ Vitesse de chargement rapide", "✓ Sécurité avancée", "✓ Optimisé SEO", "✓ Support 24/7"],
+                    ar: ["✓ تصميم عصري متجاوب", "✓ سرعة تحميل فائقة", "✓ حماية متقدمة", "✓ تحسين محركات البحث", "✓ دعم فني 24/7"] 
+                },
+                price: { en: "From 800,000 DZD", fr: "À partir de 800 000 DZD", ar: "يبدأ من 800,000 دج" },
+                priceNote: { en: "Based on project scope", fr: "Selon la portée du projet", ar: "حسب حجم المشروع" },
                 images: [
                     "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=300&h=200&fit=crop",
                     "https://images.unsplash.com/photo-1547658719-da2b51169166?w=300&h=200&fit=crop",
@@ -277,12 +293,16 @@
             },
             {
                 id: "ai", icon: "fa-robot",
-                title: { en: "AI Solutions", ar: "حلول الذكاء الاصطناعي" },
-                shortDesc: { en: "Smart automation.", ar: "أتمتة ذكية" },
-                fullDesc: { en: "Advanced AI solutions including chatbots, predictive analytics, and intelligent automation for your business.", ar: "حلول ذكاء اصطناعي متقدمة تشمل روبوتات المحادثة، التحليلات التنبؤية، والأتمتة الذكية لعملك." },
-                features: { en: ["✓ Smart chatbots", "✓ Data analytics", "✓ Task automation", "✓ Natural language processing", "✓ Predictive models"], ar: ["✓ روبوتات محادثة ذكية", "✓ تحليل البيانات", "✓ أتمتة المهام", "✓ معالجة اللغة الطبيعية", "✓ نماذج تنبؤية"] },
-                price: { en: "From $1000", ar: "من $1000" },
-                priceNote: { en: "Based on complexity", ar: "حسب التعقيد" },
+                title: { en: "AI Solutions", fr: "Solutions IA", ar: "حلول الذكاء الاصطناعي" },
+                shortDesc: { en: "Smart automation.", fr: "Automatisation intelligente.", ar: "أتمتة ذكية" },
+                fullDesc: { en: "Advanced AI solutions including chatbots, predictive analytics, and intelligent automation for your business.", fr: "Solutions IA avancées : chatbots, analyses prédictives, automatisation intelligente.", ar: "حلول ذكاء اصطناعي متقدمة تشمل روبوتات المحادثة، التحليلات التنبؤية، والأتمتة الذكية لعملك." },
+                features: { 
+                    en: ["✓ Smart chatbots", "✓ Data analytics", "✓ Task automation", "✓ Natural language processing", "✓ Predictive models"], 
+                    fr: ["✓ Chatbots intelligents", "✓ Analyses de données", "✓ Automatisation des tâches", "✓ Traitement du langage naturel", "✓ Modèles prédictifs"],
+                    ar: ["✓ روبوتات محادثة ذكية", "✓ تحليل البيانات", "✓ أتمتة المهام", "✓ معالجة اللغة الطبيعية", "✓ نماذج تنبؤية"] 
+                },
+                price: { en: "From 1,500,000 DZD", fr: "À partir de 1 500 000 DZD", ar: "يبدأ من 1,500,000 دج" },
+                priceNote: { en: "Based on complexity", fr: "Selon la complexité", ar: "حسب التعقيد" },
                 images: [
                     "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=300&h=200&fit=crop",
                     "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=300&h=200&fit=crop",
@@ -292,12 +312,16 @@
             },
             {
                 id: "drone", icon: "fa-plane",
-                title: { en: "Drone Tech", ar: "تقنية الدرون" },
-                shortDesc: { en: "Innovative drone apps.", ar: "تطبيقات مبتكرة" },
-                fullDesc: { en: "Drone solutions for agriculture, surveillance, aerial photography, and research applications.", ar: "حلول الدرونز للزراعة، المراقبة، التصوير الجوي، والتطبيقات البحثية." },
-                features: { en: ["✓ Aerial surveying", "✓ Crop monitoring", "✓ Security surveillance", "✓ Drone training", "✓ Custom development"], ar: ["✓ مسح جوي", "✓ مراقبة المحاصيل", "✓ مراقبة أمنية", "✓ تدريب على الدرونز", "✓ تطوير مخصص"] },
-                price: { en: "Custom", ar: "حسب الطلب" },
-                priceNote: { en: "Contact for quote", ar: "اتصل للسعر" },
+                title: { en: "Drone Tech", fr: "Tech Drone", ar: "تقنية الدرون" },
+                shortDesc: { en: "Innovative drone apps.", fr: "Applications innovantes pour drones.", ar: "تطبيقات مبتكرة" },
+                fullDesc: { en: "Drone solutions for agriculture, surveillance, aerial photography, and research applications.", fr: "Solutions de drones pour l'agriculture, la surveillance, la photographie aérienne et la recherche.", ar: "حلول الدرونز للزراعة، المراقبة، التصوير الجوي، والتطبيقات البحثية." },
+                features: { 
+                    en: ["✓ Aerial surveying", "✓ Crop monitoring", "✓ Security surveillance", "✓ Drone training", "✓ Custom development"], 
+                    fr: ["✓ Levés aériens", "✓ Surveillance des cultures", "✓ Surveillance de sécurité", "✓ Formation drone", "✓ Développement sur mesure"],
+                    ar: ["✓ مسح جوي", "✓ مراقبة المحاصيل", "✓ مراقبة أمنية", "✓ تدريب على الدرونز", "✓ تطوير مخصص"] 
+                },
+                price: { en: "Starting from 150,000 DZD", fr: "À partir de 150 000 DZD", ar: "يبدأ من 150,000 دج" },
+                priceNote: { en: "Contact for quote", fr: "Contactez-nous pour un devis", ar: "اتصل للسعر" },
                 images: [
                     "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=300&h=200&fit=crop",
                     "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=300&h=200&fit=crop",
@@ -309,12 +333,16 @@
         academy: [
             {
                 id: "languages", icon: "fa-language",
-                title: { en: "Language Learning", ar: "تعلم اللغات" },
-                shortDesc: { en: "Learn with experts.", ar: "تعلم مع خبراء" },
-                fullDesc: { en: "Professional language courses with native speakers. Learn English, French, Spanish, and more.", ar: "دورات لغوية احترافية مع متحدثين أصليين. تعلم الإنجليزية، الفرنسية، الإسبانية، والمزيد." },
-                features: { en: ["✓ Native speakers", "✓ Flexible schedule", "✓ Certificates", "✓ Small groups", "✓ Conversation practice"], ar: ["✓ متحدثين أصليين", "✓ جداول مرنة", "✓ شهادات", "✓ مجموعات صغيرة", "✓ تدريب محادثة"] },
-                price: { en: "From $150/mo", ar: "من 150$/شهر" },
-                priceNote: { en: "Discounts available", ar: "خصومات متاحة" },
+                title: { en: "Language Learning", fr: "Apprentissage des Langues", ar: "تعلم اللغات" },
+                shortDesc: { en: "Learn with experts.", fr: "Apprenez avec des experts.", ar: "تعلم مع خبراء" },
+                fullDesc: { en: "Professional language courses with native speakers. Learn English, French, Spanish, and more.", fr: "Cours de langues professionnels avec des locuteurs natifs. Anglais, français, espagnol, etc.", ar: "دورات لغوية احترافية مع متحدثين أصليين. تعلم الإنجليزية، الفرنسية، الإسبانية، والمزيد." },
+                features: { 
+                    en: ["✓ Native speakers", "✓ Flexible schedule", "✓ Certificates", "✓ Small groups", "✓ Conversation practice"], 
+                    fr: ["✓ Locuteurs natifs", "✓ Horaires flexibles", "✓ Certificats", "✓ Petits groupes", "✓ Pratique de conversation"],
+                    ar: ["✓ متحدثين أصليين", "✓ جداول مرنة", "✓ شهادات", "✓ مجموعات صغيرة", "✓ تدريب محادثة"] 
+                },
+                price: { en: "From 25,000 DZD/course", fr: "À partir de 25 000 DZD/cours", ar: "يبدأ من 25,000 دج/دورة" },
+                priceNote: { en: "Discounts available", fr: "Remises disponibles", ar: "خصومات متاحة" },
                 images: [
                     "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=300&h=200&fit=crop",
                     "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=300&h=200&fit=crop",
@@ -324,12 +352,16 @@
             },
             {
                 id: "academic", icon: "fa-graduation-cap",
-                title: { en: "Academic Support", ar: "الدعم الأكاديمي" },
-                shortDesc: { en: "Support for all levels.", ar: "دعم لجميع المستويات" },
-                fullDesc: { en: "Private tutoring in mathematics, physics, chemistry, and engineering subjects.", ar: "دروس خصوصية في الرياضيات، الفيزياء، الكيمياء، والمواد الهندسية." },
-                features: { en: ["✓ Expert tutors", "✓ Exam preparation", "✓ All subjects", "✓ Progress tracking", "✓ Flexible hours"], ar: ["✓ معلمين خبراء", "✓ تحضير امتحانات", "✓ جميع المواد", "✓ متابعة التقدم", "✓ ساعات مرنة"] },
-                price: { en: "From $100/mo", ar: "من 100$/شهر" },
-                priceNote: { en: "4 sessions/week", ar: "4 حصص/أسبوع" },
+                title: { en: "Academic Support", fr: "Soutien Académique", ar: "الدعم الأكاديمي" },
+                shortDesc: { en: "Support for all levels.", fr: "Soutien pour tous les niveaux.", ar: "دعم لجميع المستويات" },
+                fullDesc: { en: "Private tutoring in mathematics, physics, chemistry, and engineering subjects.", fr: "Cours particuliers en mathématiques, physique, chimie et matières d'ingénierie.", ar: "دروس خصوصية في الرياضيات، الفيزياء، الكيمياء، والمواد الهندسية." },
+                features: { 
+                    en: ["✓ Expert tutors", "✓ Exam preparation", "✓ All subjects", "✓ Progress tracking", "✓ Flexible hours"], 
+                    fr: ["✓ Tuteurs experts", "✓ Préparation aux examens", "✓ Toutes matières", "✓ Suivi des progrès", "✓ Horaires flexibles"],
+                    ar: ["✓ معلمين خبراء", "✓ تحضير امتحانات", "✓ جميع المواد", "✓ متابعة التقدم", "✓ ساعات مرنة"] 
+                },
+                price: { en: "From 2,500 DZD/hour", fr: "À partir de 2 500 DZD/heure", ar: "يبدأ من 2,500 دج/ساعة" },
+                priceNote: { en: "Based on level and subject", fr: "Selon le niveau et la matière", ar: "حسب المستوى والمادة" },
                 images: [
                     "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=300&h=200&fit=crop",
                     "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=300&h=200&fit=crop",
@@ -339,12 +371,16 @@
             },
             {
                 id: "online", icon: "fa-laptop-house",
-                title: { en: "Online Learning", ar: "التعلم عن بعد" },
-                shortDesc: { en: "Study anywhere.", ar: "ادرس من أي مكان" },
-                fullDesc: { en: "Complete online platform with live classes, recorded sessions, and interactive materials.", ar: "منصة تعلم متكاملة مع دروس مباشرة، جلسات مسجلة، ومواد تفاعلية." },
-                features: { en: ["✓ Live classes", "✓ Recorded sessions", "✓ Interactive materials", "✓ Discussion forums", "✓ Progress certificates"], ar: ["✓ دروس مباشرة", "✓ جلسات مسجلة", "✓ مواد تفاعلية", "✓ منتديات نقاش", "✓ شهادات تقدم"] },
-                price: { en: "From $80/mo", ar: "من 80$/شهر" },
-                priceNote: { en: "All materials included", ar: "جميع المواد مشمولة" },
+                title: { en: "Online Learning", fr: "Formation en Ligne", ar: "التعلم عن بعد" },
+                shortDesc: { en: "Study anywhere.", fr: "Étudiez n'importe où.", ar: "ادرس من أي مكان" },
+                fullDesc: { en: "Complete online platform with live classes, recorded sessions, and interactive materials.", fr: "Plateforme complète avec cours en direct, sessions enregistrées et supports interactifs.", ar: "منصة تعلم متكاملة مع دروس مباشرة، جلسات مسجلة، ومواد تفاعلية." },
+                features: { 
+                    en: ["✓ Live classes", "✓ Recorded sessions", "✓ Interactive materials", "✓ Discussion forums", "✓ Progress certificates"], 
+                    fr: ["✓ Cours en direct", "✓ Sessions enregistrées", "✓ Supports interactifs", "✓ Forums de discussion", "✓ Certificats de progression"],
+                    ar: ["✓ دروس مباشرة", "✓ جلسات مسجلة", "✓ مواد تفاعلية", "✓ منتديات نقاش", "✓ شهادات تقدم"] 
+                },
+                price: { en: "From 8,000 DZD/month", fr: "À partir de 8 000 DZD/mois", ar: "يبدأ من 8,000 دج/شهر" },
+                priceNote: { en: "All materials included", fr: "Tous supports inclus", ar: "جميع المواد مشمولة" },
                 images: [
                     "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=200&fit=crop",
                     "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=300&h=200&fit=crop",
@@ -354,12 +390,16 @@
             },
             {
                 id: "smart", icon: "fa-microchip",
-                title: { en: "Smart Education", ar: "التعليم الذكي" },
-                shortDesc: { en: "AI-powered learning.", ar: "تعليم بالذكاء الاصطناعي" },
-                fullDesc: { en: "Personalized learning paths powered by AI to adapt to each student's needs and pace.", ar: "مسارات تعلم مخصصة تعمل بالذكاء الاصطناعي لتتكيف مع احتياجات وسرعة كل طالب." },
-                features: { en: ["✓ Personalized learning", "✓ Adaptive exercises", "✓ Performance analytics", "✓ Smart recommendations", "✓ Instant feedback"], ar: ["✓ تعلم مخصص", "✓ تمارين تكيفية", "✓ تحليلات الأداء", "✓ توصيات ذكية", "✓ تغذية راجعة فورية"] },
-                price: { en: "From $200/mo", ar: "من 200$/شهر" },
-                priceNote: { en: "Advanced technology", ar: "تقنية متطورة" },
+                title: { en: "Smart Education", fr: "Éducation Intelligente", ar: "التعليم الذكي" },
+                shortDesc: { en: "AI-powered learning.", fr: "Apprentissage par IA.", ar: "تعليم بالذكاء الاصطناعي" },
+                fullDesc: { en: "Personalized learning paths powered by AI to adapt to each student's needs and pace.", fr: "Parcours d'apprentissage personnalisés par IA pour s'adapter aux besoins de chaque étudiant.", ar: "مسارات تعلم مخصصة تعمل بالذكاء الاصطناعي لتتكيف مع احتياجات وسرعة كل طالب." },
+                features: { 
+                    en: ["✓ Personalized learning", "✓ Adaptive exercises", "✓ Performance analytics", "✓ Smart recommendations", "✓ Instant feedback"], 
+                    fr: ["✓ Apprentissage personnalisé", "✓ Exercices adaptatifs", "✓ Analyses de performance", "✓ Recommandations intelligentes", "✓ Retour instantané"],
+                    ar: ["✓ تعلم مخصص", "✓ تمارين تكيفية", "✓ تحليلات الأداء", "✓ توصيات ذكية", "✓ تغذية راجعة فورية"] 
+                },
+                price: { en: "From 35,000 DZD/course", fr: "À partir de 35 000 DZD/cours", ar: "يبدأ من 35,000 دج/دورة" },
+                priceNote: { en: "Advanced technology", fr: "Technologie avancée", ar: "تقنية متطورة" },
                 images: [
                     "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=300&h=200&fit=crop",
                     "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=300&h=200&fit=crop",
@@ -369,32 +409,51 @@
             }
         ],
         stats: [
-            { icon: "fa-calendar-alt", value: 5, labelEn: "Years Exp", labelAr: "سنوات خبرة", suffix: "+" },
-            { icon: "fa-code", value: 120, labelEn: "Projects", labelAr: "مشاريع", suffix: "+" },
-            { icon: "fa-smile", value: 95, labelEn: "Clients", labelAr: "عملاء", suffix: "+" },
-            { icon: "fa-users", value: 1500, labelEn: "Students", labelAr: "طلاب", suffix: "+" }
+            { icon: "fa-calendar-alt", value: 5, labelEn: "Years Exp", labelFr: "Ans d'expérience", labelAr: "سنوات خبرة", suffix: "+" },
+            { icon: "fa-code", value: 120, labelEn: "Projects", labelFr: "Projets", labelAr: "مشاريع", suffix: "+" },
+            { icon: "fa-smile", value: 85, labelEn: "Clients", labelFr: "Clients", labelAr: "عملاء", suffix: "+" },
+            { icon: "fa-users", value: 1500, labelEn: "Students", labelFr: "Étudiants", labelAr: "طلاب", suffix: "+" }
         ],
         about: {
-            title: { en: "About Us", ar: "من نحن" }, subtitle: { en: "Innovation meets excellence", ar: "الابتكار يلتقي بالتميز" },
-            mission: { icon: "fa-bullseye", title: { en: "Mission", ar: "رسالتنا" }, text: { en: "Empower through tech.", ar: "تمكين عبر التقنية" } },
-            vision: { icon: "fa-eye", title: { en: "Vision", ar: "رؤيتنا" }, text: { en: "Global leader.", ar: "ريادة عالمية" } },
-            values: { icon: "fa-gem", title: { en: "Values", ar: "قيمنا" }, text: { en: "Innovation, Quality.", ar: "الابتكار، الجودة" } }
+            title: { en: "About Us", fr: "À propos de nous", ar: "من نحن" },
+            subtitle: { en: "Innovation meets excellence", fr: "L'innovation rencontre l'excellence", ar: "الابتكار يلتقي بالتميز" },
+            mission: { 
+                icon: "fa-bullseye", 
+                title: { en: "Mission", fr: "Notre Mission", ar: "رسالتنا" }, 
+                text: { en: "Empower through tech.", fr: "Donner les moyens par la technologie.", ar: "تمكين عبر التقنية" } 
+            },
+            vision: { 
+                icon: "fa-eye", 
+                title: { en: "Vision", fr: "Notre Vision", ar: "رؤيتنا" }, 
+                text: { en: "Global leader.", fr: "Leader mondial.", ar: "ريادة عالمية" } 
+            },
+            values: { 
+                icon: "fa-gem", 
+                title: { en: "Values", fr: "Nos Valeurs", ar: "قيمنا" }, 
+                text: { en: "Innovation, Quality.", fr: "Innovation, Qualité.", ar: "الابتكار، الجودة" } 
+            }
         },
         team: [
-            { icon: "fa-user-tie", nameEn: "Dr Allali", nameAr: "الدكتورعلالي ", roleEn: "CEO", roleAr: "المدير" },
-            { icon: "fa-chalkboard-user", nameEn: "Sarah Mansouri", nameAr: "سارة منصوري", roleEn: "Director", roleAr: "مديرة" },
-            { icon: "fa-laptop-code", nameEn: "Karim Boumediene", nameAr: "كريم بومدين", roleEn: "CTO", roleAr: "مدير تقنية" }
+            { icon: "fa-user-tie", nameEn: "Abdenour Allali", nameFr: "Abdenour Allali", nameAr: "عبدالنور علالي", roleEn: "CEO", roleFr: "PDG", roleAr: "المدير" },
+            { icon: "fa-chalkboard-user", nameEn: "Sarah Mansouri", nameFr: "Sarah Mansouri", nameAr: "سارة منصوري", roleEn: "Director", roleFr: "Directrice", roleAr: "مديرة" },
+            { icon: "fa-laptop-code", nameEn: "Karim Boumediene", nameFr: "Karim Boumediene", nameAr: "كريم بومدين", roleEn: "CTO", roleFr: "CTO", roleAr: "مدير تقنية" }
         ],
-        contact: { title: { en: "Contact Us", ar: "اتصل بنا" }, address: { en: "Algiers, Algeria", ar: "الجزائر" }, phone: "+213 555 38 27 71", email: "contact@ilefsky.com", hours: { en: "Sun-Thu 9-17", ar: "الأحد-الخميس 9-17" } },
+        contact: { 
+            title: { en: "Contact Us", fr: "Contactez-nous", ar: "اتصل بنا" }, 
+            address: { en: "Algiers, Algeria", fr: "Alger, Algérie", ar: "الجزائر" }, 
+            phone: "+213 555 38 27 71", 
+            email: "contact@ilefsky.com", 
+            hours: { en: "Sun-Thu 9-17", fr: "Dim-Jeu 9h-17h", ar: "الأحد-الخميس 9-17" } 
+        },
         social: [
             { icon: "fa-facebook-f", url: "https://facebook.com/ilefsky" },
             { icon: "fa-youtube", url: "https://www.youtube.com/@ILEFSky" },
-            { icon: "fa-twitter", url: "https://twitter.com/@IlefSky" },
+            { icon: "fa-twitter", url: "https://twitter.com/ilefsky" },
             { icon: "fa-instagram", url: "https://instagram.com/ilefsky" },
             { icon: "fa-linkedin-in", url: "https://linkedin.com/company/ilefsky" },
             { icon: "fa-whatsapp", url: "https://wa.me/213555382771" }
         ],
-        footer: { en: "© 2025 ILefSky Tech", ar: "© 2025 ILefSky للتكنولوجيا" },
+        footer: { en: "© 2025 ILefSky Tech", fr: "© 2025 ILefSky Technologies", ar: "© 2025 ILefSky للتكنولوجيا" },
         partners: [
             { name: "ZKTECH", logo: "https://github.com/ileefsky-arch/IlefSky/raw/main/ZKTECH.png?raw=true", url: "https://www.zktech.dz" },
             { name: "شريك 2", logo: "https://via.placeholder.com/120x50/1e293b/gold?text=Partner+2", url: "#" },
@@ -417,18 +476,28 @@
         ]
     };
     
-    let currentLanguage = 'en';
+    let currentLanguage = 'ar'; // Arabe par défaut
     
     function getAnnouncements(lang) {
         if (lang === 'ar') {
             return [
                 { type: "image", src: "https://cdn-icons-png.flaticon.com/512/2331/2331970.png", text: "تطوير الويب:", highlight: "خصم 20%", suffix: "", badge: "🔥", targetId: "web", targetType: "service" },
                 { type: "image", src: "https://cdn-icons-png.flaticon.com/512/4712/4712109.png", text: "الذكاء الاصطناعي:", highlight: "استشارة مجانية", suffix: "", badge: "🤖", targetId: "ai", targetType: "service" },
-                { type: "image", src: "https://cdn-icons-png.flaticon.com/512/2972/2972185.png", text: "تقنية الدرونز:", highlight: "تخفيض 15%", suffix: "", badge: "🚁", targetId: "drone", targetType: "service" },
+                { type: "image", src: "https://cdn-icons-png.flaticon.com/512/2972/2972185.png", text: "تقنية الدرون:", highlight: "تخفيض 15%", suffix: "", badge: "🚁", targetId: "drone", targetType: "service" },
                 { type: "image", src: "https://cdn-icons-png.flaticon.com/512/1907/1907560.png", text: "تعلم اللغات:", highlight: "خصم 25%", suffix: "", badge: "🌍", targetId: "languages", targetType: "academy" },
                 { type: "image", src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png", text: "الدعم الأكاديمي:", highlight: "أول حصة مجانية", suffix: "", badge: "📚", targetId: "academic", targetType: "academy" },
                 { type: "image", src: "https://cdn-icons-png.flaticon.com/512/1041/1041918.png", text: "التعلم عن بعد:", highlight: "وصول مجاني", suffix: "", badge: "💻", targetId: "online", targetType: "academy" },
                 { type: "icon", icon: "fa-microchip", text: "التعليم الذكي:", highlight: "عرض خاص", suffix: "", badge: "🧠", targetId: "smart", targetType: "academy" }
+            ];
+        } else if (lang === 'fr') {
+            return [
+                { type: "image", src: "https://cdn-icons-png.flaticon.com/512/2331/2331970.png", text: "Développement Web:", highlight: "20% de réduction", suffix: "", badge: "🔥", targetId: "web", targetType: "service" },
+                { type: "image", src: "https://cdn-icons-png.flaticon.com/512/4712/4712109.png", text: "IA:", highlight: "Consultation gratuite", suffix: "", badge: "🤖", targetId: "ai", targetType: "service" },
+                { type: "image", src: "https://cdn-icons-png.flaticon.com/512/2972/2972185.png", text: "Tech Drone:", highlight: "15% de réduction", suffix: "", badge: "🚁", targetId: "drone", targetType: "service" },
+                { type: "image", src: "https://cdn-icons-png.flaticon.com/512/1907/1907560.png", text: "Langues:", highlight: "25% de réduction", suffix: "", badge: "🌍", targetId: "languages", targetType: "academy" },
+                { type: "image", src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png", text: "Soutien:", highlight: "Première séance gratuite", suffix: "", badge: "📚", targetId: "academic", targetType: "academy" },
+                { type: "image", src: "https://cdn-icons-png.flaticon.com/512/1041/1041918.png", text: "En ligne:", highlight: "Accès gratuit", suffix: "", badge: "💻", targetId: "online", targetType: "academy" },
+                { type: "icon", icon: "fa-microchip", text: "SmartEd:", highlight: "Offre spéciale", suffix: "", badge: "🧠", targetId: "smart", targetType: "academy" }
             ];
         } else {
             return [
@@ -470,7 +539,7 @@
             ${videoHtml}
             <div class="modal-price">💰 ${price}<small>${note}</small></div>
             <ul class="modal-features">${features.map(f => `<li>${f}</li>`).join('')}</ul>
-            <button class="modal-btn" onclick="requestService('${title}')">📞 ${lang === 'ar' ? 'اطلب الخدمة الآن' : 'Request Service Now'}</button>
+            <button class="modal-btn" onclick="requestService('${title}')">📞 ${lang === 'ar' ? 'اطلب الخدمة الآن' : (lang === 'fr' ? 'Demandez ce service' : 'Request Service Now')}</button>
         `;
         document.getElementById('serviceModal').style.display = 'flex';
     }
@@ -511,7 +580,10 @@
     
     function renderHome() {
         let lang = currentLanguage;
-        let statsHtml = contentData.stats.map(s => `<div class="stat-counter-card"><div class="stat-icon"><i class="fas ${s.icon}"></i></div><div class="stat-number"><span class="counter" data-target="${s.value}">0</span>${s.suffix}</div><div class="stat-label">${s[lang === 'ar' ? 'labelAr' : 'labelEn']}</div></div>`).join('');
+        let statsHtml = contentData.stats.map(s => {
+            let label = lang === 'ar' ? s.labelAr : (lang === 'fr' ? s.labelFr : s.labelEn);
+            return `<div class="stat-counter-card"><div class="stat-icon"><i class="fas ${s.icon}"></i></div><div class="stat-number"><span class="counter" data-target="${s.value}">0</span>${s.suffix}</div><div class="stat-label">${label}</div></div>`;
+        }).join('');
         let announcements = getAnnouncements(lang);
         let annHtml = '';
         announcements.forEach(a => {
@@ -519,9 +591,29 @@
             if (a.type === 'image') annHtml += `<span class="announcement-item" ${click}><img class="announcement-item-img" src="${a.src}"><strong>${a.text}</strong> ${a.highlight} ${a.suffix}<span class="offer-badge">${a.badge}</span></span>`;
             else annHtml += `<span class="announcement-item" ${click}><i class="fas ${a.icon}"></i><strong>${a.text}</strong> ${a.highlight} ${a.suffix}<span class="offer-badge">${a.badge}</span></span>`;
         });
-        let servicesHtml = contentData.services.map(s => `<div class="card" onclick="showServiceModal('${s.id}', 'service')"><i class="fas ${s.icon} card-icon"></i><h3>${s.title[lang]}</h3><p>${s.shortDesc[lang]}</p></div>`).join('');
-        let academyHtml = contentData.academy.map(a => `<div class="card" onclick="showServiceModal('${a.id}', 'academy')"><i class="fas ${a.icon} card-icon"></i><h3>${a.title[lang]}</h3><p>${a.shortDesc[lang]}</p></div>`).join('');
-        document.getElementById('homeContent').innerHTML = `<header><img id="logoImg" class="logo" src="logo.png" onerror="this.style.display='none';this.parentNode.innerHTML+='<div class=\'logo-placeholder\'>🚀</div>'"><h1>${contentData.siteName[lang]}</h1><p class="tagline">${contentData.tagline[lang]}</p><button class="btn" onclick="scrollToContact()">📧 ${lang === 'ar' ? 'اتصل بنا' : 'Contact'}</button></header><section class="section section-alt"><h2>${lang === 'ar' ? 'تأثيرنا' : 'Our Impact'}</h2><div class="stats-counter-container">${statsHtml}</div><div class="announcement-bar"><div class="announcement-track">${annHtml + annHtml}</div></div></section><section class="section"><h2>✨ ${lang === 'ar' ? 'خدماتنا' : 'Services'}</h2><div class="services">${servicesHtml}</div></section><section class="section section-alt"><h2>🎓 ${lang === 'ar' ? 'أكاديميتنا' : 'Academy'}</h2><div class="services">${academyHtml}</div></section>`;
+        
+        let servicesHtml = contentData.services.map(s => `
+            <div class="card" onclick="showServiceModal('${s.id}', 'service')">
+                <i class="fas ${s.icon} card-icon"></i>
+                <h3>${s.title[lang]}</h3>
+                <p>${s.shortDesc[lang]}</p>
+                <div class="card-price">💰 ${s.price[lang]}</div>
+                <button class="btn-sm" onclick="event.stopPropagation();showServiceModal('${s.id}', 'service')">${lang === 'ar' ? 'اطلب الخدمة' : (lang === 'fr' ? 'Demander le service' : 'Request Service')}</button>
+            </div>
+        `).join('');
+        
+        let academyHtml = contentData.academy.map(a => `
+            <div class="card" onclick="showServiceModal('${a.id}', 'academy')">
+                <i class="fas ${a.icon} card-icon"></i>
+                <h3>${a.title[lang]}</h3>
+                <p>${a.shortDesc[lang]}</p>
+                <div class="card-price">💰 ${a.price[lang]}</div>
+                <button class="btn-sm" onclick="event.stopPropagation();showServiceModal('${a.id}', 'academy')">${lang === 'ar' ? 'سجل الآن' : (lang === 'fr' ? 'Inscrivez-vous' : 'Register Now')}</button>
+            </div>
+        `).join('');
+        
+        document.getElementById('homeContent').innerHTML = `<header><img id="logoImg" class="logo" src="logo.png" onerror="this.style.display='none';this.parentNode.innerHTML+='<div class=\'logo-placeholder\'>🚀</div>'"><h1>${contentData.siteName[lang]}</h1><p class="tagline">${contentData.tagline[lang]}</p><button class="btn" onclick="scrollToContact()">📧 ${lang === 'ar' ? 'اتصل بنا' : (lang === 'fr' ? 'Contactez-nous' : 'Contact Us')}</button></header><section class="section section-alt"><h2>${lang === 'ar' ? 'تأثيرنا' : (lang === 'fr' ? 'Notre impact' : 'Our Impact')}</h2><div class="stats-counter-container">${statsHtml}</div><div class="announcement-bar"><div class="announcement-track">${annHtml + annHtml}</div></div></section><section class="section"><h2>✨ ${lang === 'ar' ? 'خدماتنا' : (lang === 'fr' ? 'Nos services' : 'Our Services')}</h2><div class="services">${servicesHtml}</div></section><section class="section section-alt"><h2>🎓 ${lang === 'ar' ? 'أكاديميتنا' : (lang === 'fr' ? 'Notre Académie' : 'Our Academy')}</h2><div class="services">${academyHtml}</div></section>`;
+        
         setTimeout(() => { document.querySelectorAll('.counter').forEach(c => { let t = +c.dataset.target, cur = 0, inc = t/50; let up = () => { if(cur < t) { cur += inc; c.innerText = Math.ceil(cur); setTimeout(up, 30); } else c.innerText = t; }; up(); }); }, 500);
         
         renderPartners();
@@ -531,12 +623,12 @@
     
     function renderAbout() {
         let lang = currentLanguage;
-        document.getElementById('aboutContent').innerHTML = `<header style="padding:100px 20px 40px"><h1>${contentData.about.title[lang]}</h1><p>${contentData.about.subtitle[lang]}</p></header><section class="section"><div class="about-container"><div class="about-card"><i class="fas ${contentData.about.mission.icon} card-icon"></i><h3>${contentData.about.mission.title[lang]}</h3><p>${contentData.about.mission.text[lang]}</p></div><div class="about-card"><i class="fas ${contentData.about.vision.icon} card-icon"></i><h3>${contentData.about.vision.title[lang]}</h3><p>${contentData.about.vision.text[lang]}</p></div><div class="about-card"><i class="fas ${contentData.about.values.icon} card-icon"></i><h3>${contentData.about.values.title[lang]}</h3><p>${contentData.about.values.text[lang]}</p></div></div></section><section class="section section-alt"><h2>${lang === 'ar' ? 'فريقنا' : 'Team'}</h2><div class="team-container">${contentData.team.map(t => `<div class="team-card"><div class="team-avatar"><i class="fas ${t.icon}"></i></div><h3 class="team-name">${t[lang === 'ar' ? 'nameAr' : 'nameEn']}</h3><p class="team-role">${t[lang === 'ar' ? 'roleAr' : 'roleEn']}</p></div>`).join('')}</div></section>`;
+        document.getElementById('aboutContent').innerHTML = `<header style="padding:100px 20px 40px"><h1>${contentData.about.title[lang]}</h1><p>${contentData.about.subtitle[lang]}</p></header><section class="section"><div class="about-container"><div class="about-card"><i class="fas ${contentData.about.mission.icon} card-icon"></i><h3>${contentData.about.mission.title[lang]}</h3><p>${contentData.about.mission.text[lang]}</p></div><div class="about-card"><i class="fas ${contentData.about.vision.icon} card-icon"></i><h3>${contentData.about.vision.title[lang]}</h3><p>${contentData.about.vision.text[lang]}</p></div><div class="about-card"><i class="fas ${contentData.about.values.icon} card-icon"></i><h3>${contentData.about.values.title[lang]}</h3><p>${contentData.about.values.text[lang]}</p></div></div></section><section class="section section-alt"><h2>${lang === 'ar' ? 'فريقنا' : (lang === 'fr' ? 'Notre équipe' : 'Our Team')}</h2><div class="team-container">${contentData.team.map(t => `<div class="team-card"><div class="team-avatar"><i class="fas ${t.icon}"></i></div><h3 class="team-name">${t[lang === 'ar' ? 'nameAr' : (lang === 'fr' ? 'nameFr' : 'nameEn')]}</h3><p class="team-role">${t[lang === 'ar' ? 'roleAr' : (lang === 'fr' ? 'roleFr' : 'roleEn')]}</p></div>`).join('')}</div></section>`;
     }
     
     function renderContact() {
         let lang = currentLanguage;
-        document.getElementById('contactContent').innerHTML = `<h2>📬 ${contentData.contact.title[lang]}</h2><div class="social-links">${contentData.social.map(s => `<a href="${s.url}" target="_blank" class="social-icon"><i class="fab ${s.icon}"></i></a>`).join('')}</div><div class="map-container"><div class="map-wrapper"><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=2.95,36.70,3.15,36.80&layer=mapnik&marker=36.7538,3.0588" width="100%" height="400" style="border:0; border-radius:15px;" allowfullscreen loading="lazy"></iframe></div><div class="info-card"><h3>${lang === 'ar' ? 'موقعنا' : 'Location'}</h3><div class="info-item"><div class="info-icon"><i class="fas fa-map-marker-alt"></i></div><div class="info-text"><strong>${lang === 'ar' ? 'العنوان' : 'Address'}</strong><span>${contentData.contact.address[lang]}</span></div></div><div class="info-item"><div class="info-icon"><i class="fas fa-phone"></i></div><div class="info-text"><strong>${lang === 'ar' ? 'الهاتف' : 'Phone'}</strong><span>${contentData.contact.phone}</span></div></div><div class="info-item"><div class="info-icon"><i class="fas fa-envelope"></i></div><div class="info-text"><strong>Email</strong><span>${contentData.contact.email}</span></div></div><div class="info-item"><div class="info-icon"><i class="fas fa-clock"></i></div><div class="info-text"><strong>${lang === 'ar' ? 'ساعات العمل' : 'Hours'}</strong><span>${contentData.contact.hours[lang]}</span></div></div><a href="https://www.openstreetmap.org/?mlat=36.7538&mlon=3.0588#map=13/36.7538/3.0588" target="_blank" class="direction-btn"><i class="fas fa-directions"></i> ${lang === 'ar' ? 'اتجاهات' : 'Directions'}</a></div></div><div class="contact-form-container"><form id="contactForm" action="https://formspree.io/f/xvzdoogy" method="POST"><div class="form-group"><label>${lang === 'ar' ? 'الاسم' : 'Name'}</label><input type="text" name="name" required></div><div class="form-group"><label>Email</label><input type="email" name="email" required></div><div class="form-group"><label>${lang === 'ar' ? 'الهاتف' : 'Phone'}</label><div class="phone-field-row"><div class="phone-prefix">+213</div><input type="tel" name="phone" placeholder="551234567"></div></div><div class="form-group"><label>${lang === 'ar' ? 'الموضوع' : 'Subject'}</label><select name="subject" id="subjectSelect"><option value="general">${lang === 'ar' ? 'عام' : 'General'}</option><option value="web">Web Dev</option><option value="ai">AI</option><option value="drone">Drone</option><option value="languages">Languages</option><option value="academic">Academic</option><option value="online">Online</option><option value="smart">Smart</option></select></div><div class="form-group"><label>${lang === 'ar' ? 'الرسالة' : 'Message'}</label><textarea name="message" rows="5" required></textarea></div><button type="submit" class="submit-btn">${lang === 'ar' ? 'إرسال' : 'Send'}</button></form><div id="formMessage" class="form-message"></div></div>`;
+        document.getElementById('contactContent').innerHTML = `<h2>📬 ${contentData.contact.title[lang]}</h2><div class="social-links">${contentData.social.map(s => `<a href="${s.url}" target="_blank" class="social-icon"><i class="fab ${s.icon}"></i></a>`).join('')}</div><div class="map-container"><div class="map-wrapper"><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=2.95,36.70,3.15,36.80&layer=mapnik&marker=36.7538,3.0588" width="100%" height="400" style="border:0; border-radius:15px;" allowfullscreen loading="lazy"></iframe></div><div class="info-card"><h3>${lang === 'ar' ? 'موقعنا' : (lang === 'fr' ? 'Notre emplacement' : 'Our Location')}</h3><div class="info-item"><div class="info-icon"><i class="fas fa-map-marker-alt"></i></div><div class="info-text"><strong>${lang === 'ar' ? 'العنوان' : (lang === 'fr' ? 'Adresse' : 'Address')}</strong><span>${contentData.contact.address[lang]}</span></div></div><div class="info-item"><div class="info-icon"><i class="fas fa-phone"></i></div><div class="info-text"><strong>${lang === 'ar' ? 'الهاتف' : (lang === 'fr' ? 'Téléphone' : 'Phone')}</strong><span>${contentData.contact.phone}</span></div></div><div class="info-item"><div class="info-icon"><i class="fas fa-envelope"></i></div><div class="info-text"><strong>Email</strong><span>${contentData.contact.email}</span></div></div><div class="info-item"><div class="info-icon"><i class="fas fa-clock"></i></div><div class="info-text"><strong>${lang === 'ar' ? 'ساعات العمل' : (lang === 'fr' ? 'Horaires' : 'Hours')}</strong><span>${contentData.contact.hours[lang]}</span></div></div><a href="https://www.openstreetmap.org/?mlat=36.7538&mlon=3.0588#map=13/36.7538/3.0588" target="_blank" class="direction-btn"><i class="fas fa-directions"></i> ${lang === 'ar' ? 'اتجاهات' : (lang === 'fr' ? 'Itinéraire' : 'Directions')}</a></div></div><div class="contact-form-container"><form id="contactForm" action="https://formspree.io/f/xvzdoogy" method="POST"><div class="form-group"><label>${lang === 'ar' ? 'الاسم' : (lang === 'fr' ? 'Nom complet' : 'Full Name')}</label><input type="text" name="name" required></div><div class="form-group"><label>Email</label><input type="email" name="email" required></div><div class="form-group"><label>${lang === 'ar' ? 'الهاتف' : (lang === 'fr' ? 'Téléphone' : 'Phone')}</label><div class="phone-field-row"><div class="phone-prefix">+213</div><input type="tel" name="phone" placeholder="551234567"></div></div><div class="form-group"><label>${lang === 'ar' ? 'الموضوع' : (lang === 'fr' ? 'Sujet' : 'Subject')}</label><select name="subject" id="subjectSelect"><option value="general">${lang === 'ar' ? 'عام' : (lang === 'fr' ? 'Général' : 'General')}</option><option value="web">Web Dev</option><option value="ai">AI</option><option value="drone">Drone</option><option value="languages">Languages</option><option value="academic">Academic</option><option value="online">Online</option><option value="smart">Smart</option></select></div><div class="form-group"><label>${lang === 'ar' ? 'الرسالة' : (lang === 'fr' ? 'Message' : 'Message')}</label><textarea name="message" rows="5" required></textarea></div><button type="submit" class="submit-btn">${lang === 'ar' ? 'إرسال' : (lang === 'fr' ? 'Envoyer' : 'Send')}</button></form><div id="formMessage" class="form-message"></div></div>`;
         let form = document.getElementById('contactForm');
         if(form) form.onsubmit = async (e) => { e.preventDefault(); let btn = form.querySelector('.submit-btn'), orig = btn.innerText; btn.disabled = true; btn.innerText = 'Sending...'; try { let res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }); if(res.ok) { document.getElementById('formMessage').className = 'form-message success'; document.getElementById('formMessage').innerText = '✅ Sent!'; form.reset(); } else throw Error(); } catch(e) { document.getElementById('formMessage').className = 'form-message error'; document.getElementById('formMessage').innerText = '❌ Error'; } btn.disabled = false; btn.innerText = orig; setTimeout(() => { let m = document.getElementById('formMessage'); m.style.display = 'none'; m.className = 'form-message'; }, 5000); };
     }
@@ -550,14 +642,14 @@
         btn.classList.add('active'); 
         document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr'); 
         document.documentElement.setAttribute('lang', lang); 
-        document.getElementById('navHome').innerText = lang === 'ar' ? 'الرئيسية' : 'Home'; 
-        document.getElementById('navAbout').innerText = lang === 'ar' ? 'من نحن' : 'About'; 
-        document.getElementById('navContact').innerText = lang === 'ar' ? 'اتصل بنا' : 'Contact'; 
+        document.getElementById('navHome').innerText = lang === 'ar' ? 'الرئيسية' : (lang === 'fr' ? 'Accueil' : 'Home'); 
+        document.getElementById('navAbout').innerText = lang === 'ar' ? 'من نحن' : (lang === 'fr' ? 'À propos' : 'About'); 
+        document.getElementById('navContact').innerText = lang === 'ar' ? 'اتصل بنا' : (lang === 'fr' ? 'Contact' : 'Contact'); 
         document.getElementById('footerText').innerText = contentData.footer[lang]; 
-        document.getElementById('closeModalBtn').innerText = lang === 'ar' ? 'إغلاق' : 'Close';
-        document.getElementById('partnersTitle').innerHTML = lang === 'ar' ? '🤝 شركاء النجاح' : '🤝 Our Partners';
-        document.getElementById('projectsTitle').innerHTML = lang === 'ar' ? '🏆 من أعمالنا' : '🏆 Our Projects';
-        document.getElementById('testimonialsTitle').innerHTML = lang === 'ar' ? '⭐ ماذا يقول عملاؤنا' : '⭐ What Our Clients Say';
+        document.getElementById('closeModalBtn').innerText = lang === 'ar' ? 'إغلاق' : (lang === 'fr' ? 'Fermer' : 'Close');
+        document.getElementById('partnersTitle').innerHTML = lang === 'ar' ? '🤝 شركاء النجاح' : (lang === 'fr' ? '🤝 Nos partenaires' : '🤝 Our Partners');
+        document.getElementById('projectsTitle').innerHTML = lang === 'ar' ? '🏆 من أعمالنا' : (lang === 'fr' ? '🏆 Nos réalisations' : '🏆 Our Projects');
+        document.getElementById('testimonialsTitle').innerHTML = lang === 'ar' ? '⭐ ماذا يقول عملاؤنا' : (lang === 'fr' ? '⭐ Ce que nos clients disent' : '⭐ What Our Clients Say');
         renderHome(); 
         renderAbout(); 
         renderContact(); 
